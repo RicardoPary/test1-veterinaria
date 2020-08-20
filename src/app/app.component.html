@@ -1,4 +1,37 @@
-<hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
-</p>
+<div>
+
+  <p *ngIf="verifyAllVacunados()">
+    TODOS VACUNADOS
+  </p>
+
+  <p>VETERINARIA</p>
+  <p>VACUNADOS {{pets.vacunados.length}}</p>
+  <p>SIN VACUNAR {{pets.novacunados.length}}</p>
+
+	<p>VACUNADOS</p>
+	<div style="display: flex; flexDirection: row;">
+		<div *ngFor="let pet of pets.vacunados">
+			<mascota
+       [nombre]="pet.nombre"
+       [color]="pet.color"
+       [edad]="pet.edad"
+       [vacunado]="pet.vacunado"
+       (votar)="vacunar(pet, 'vacunados')">
+			</mascota>
+		</div>
+	</div>
+
+	<p>NO VACUNADOS</p>
+	<div style="display: flex; flexDirection: row;">
+		<div *ngFor="let pet of pets.novacunados">
+			<mascota
+       [nombre]="pet.nombre"
+       [color]="pet.color"
+       [edad]="pet.edad"
+       [vacunado]="pet.vacunado"
+       (vacunar)="vacunar(pet, 'novacunados')">
+			</mascota>
+		</div>
+	</div>
+
+</div>
